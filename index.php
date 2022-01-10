@@ -60,12 +60,18 @@ class Premium extends Utente {          //classe FIGLIA
         
         parent::__construct($firstName, $cognome, $numAcquisti);
         
-        $this->sconto = $sconto;
+        $this->sconto = $this-> premium__discount();
         $this->basic__or__premium = $basic__or__premium;
 
     }    
+
+    public function premium__discount() {
+        return $this->sconto = $this->numAcquisti > 10   ?    20   :   0;
+    }
     
 }
+
+
 
 
 // ISTANZE
@@ -87,17 +93,17 @@ echo '<hr>';
 
 
 // utente 1
-$utente1 = new Utente('Luca', 'Nannetti', '6');
+$utente1 = new Utente('Luca', 'Nannetti', 6);
 var_dump($utente1);
 
 
 // utente 2
-$utente2 = new Utente('Gino', 'Splizman', '21');
+$utente2 = new Utente('Gino', 'Splizman', 21);
 var_dump($utente2);
 
 
 // utente 3
-$utente3 = new Utente('Franco', 'Cappone', '2');
+$utente3 = new Utente('Franco', 'Cappone', 2);
 var_dump($utente3);
 
 
@@ -105,8 +111,14 @@ echo '<hr>';
 
 
 // ISTANZE da classe figlia
-$utente1completo = new Premium('Luca', 'Nannetti', '6', '0', 'basic');
+$utente1completo = new Premium('Luca', 'Nannetti', 6, '0', 'basic');
 var_dump($utente1completo);
+
+$utente2completo = new Premium('Gino', 'Splizman', 21, '20', 'premium');
+var_dump($utente2completo);
+
+$utente3completo = new Premium('Franco', 'Cappone', 2, '0', 'basic');
+var_dump($utente3completo);
 
 
 
